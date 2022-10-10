@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pessoasContato">
+      <h2 data-cy="pessoasContatoDetailsHeading">
+        <span>Pessoas Contato</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ pessoasContato.id }}</span>
+        </dd>
+        <dt><span>Pessoa</span></dt>
+        <dd>
+          <span>{{ pessoasContato.pessoa }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ pessoasContato.email }}</span>
+        </dd>
+        <dt><span>Emailgoogle</span></dt>
+        <dd>
+          <span>{{ pessoasContato.emailgoogle }}</span>
+        </dd>
+        <dt><span>Endereco</span></dt>
+        <dd>
+          <span>{{ pessoasContato.endereco }}</span>
+        </dd>
+        <dt><span>Endnum</span></dt>
+        <dd>
+          <span>{{ pessoasContato.endnum }}</span>
+        </dd>
+        <dt><span>Endcompl</span></dt>
+        <dd>
+          <span>{{ pessoasContato.endcompl }}</span>
+        </dd>
+        <dt><span>Bairro</span></dt>
+        <dd>
+          <span>{{ pessoasContato.bairro }}</span>
+        </dd>
+        <dt><span>Municipio</span></dt>
+        <dd>
+          <span>{{ pessoasContato.municipio }}</span>
+        </dd>
+        <dt><span>Uf</span></dt>
+        <dd>
+          <span>{{ pessoasContato.uf }}</span>
+        </dd>
+        <dt><span>Cep</span></dt>
+        <dd>
+          <span>{{ pessoasContato.cep }}</span>
+        </dd>
+        <dt><span>Dddfone</span></dt>
+        <dd>
+          <span>{{ pessoasContato.dddfone }}</span>
+        </dd>
+        <dt><span>Fone</span></dt>
+        <dd>
+          <span>{{ pessoasContato.fone }}</span>
+        </dd>
+        <dt><span>Dddcelular</span></dt>
+        <dd>
+          <span>{{ pessoasContato.dddcelular }}</span>
+        </dd>
+        <dt><span>Celular</span></dt>
+        <dd>
+          <span>{{ pessoasContato.celular }}</span>
+        </dd>
+        <dt><span>Dddcomercial</span></dt>
+        <dd>
+          <span>{{ pessoasContato.dddcomercial }}</span>
+        </dd>
+        <dt><span>Comercial</span></dt>
+        <dd>
+          <span>{{ pessoasContato.comercial }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ pessoasContato.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/pessoas-contato', pessoasContato.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

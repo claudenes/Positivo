@@ -1,0 +1,138 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form
+      name="editForm"
+      role="form"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="editForm"
+    >
+      <h2
+        id="jhi-professores-turma-heading"
+        data-cy="ProfessoresTurmaCreateUpdateHeading"
+      >
+        Create or edit a Professores Turma
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dtatualizacao"
+            >Dtatualizacao</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dtatualizacao"
+              data-cy="dtatualizacao"
+              type="text"
+              class="form-control"
+              name="dtatualizacao"
+              ngbDatepicker
+              #dtatualizacaoDp="ngbDatepicker"
+              formControlName="dtatualizacao"
+            />
+            <span class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="dtatualizacaoDp.toggle()"
+              >
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_professores"
+            >Professores</label
+          >
+          <select
+            class="form-control"
+            id="field_professores"
+            data-cy="professores"
+            name="professores"
+            formControlName="professores"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                professoresOption.id === editForm.get('professores')!.value?.id
+                  ? editForm.get('professores')!.value
+                  : professoresOption
+              "
+              *ngFor="
+                let professoresOption of professoresSharedCollection;
+                trackBy: trackProfessoresById
+              "
+            >
+              {{ professoresOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_turmas">Turmas</label>
+          <select
+            class="form-control"
+            id="field_turmas"
+            data-cy="turmas"
+            name="turmas"
+            formControlName="turmas"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                turmasOption.id === editForm.get('turmas')!.value?.id
+                  ? editForm.get('turmas')!.value
+                  : turmasOption
+              "
+              *ngFor="
+                let turmasOption of turmasSharedCollection;
+                trackBy: trackTurmasById
+              "
+            >
+              {{ turmasOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

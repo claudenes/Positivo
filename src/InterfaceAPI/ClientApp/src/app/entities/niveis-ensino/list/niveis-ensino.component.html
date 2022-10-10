@@ -1,0 +1,108 @@
+<div>
+  <h2 id="page-heading" data-cy="NiveisEnsinoHeading">
+    <span>Niveis Ensinos</span>
+
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-info mr-2"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-niveis-ensino"
+        [routerLink]="['/niveis-ensino/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Niveis Ensino </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div
+    class="alert alert-warning"
+    id="no-result"
+    *ngIf="niveisEnsinos?.length === 0"
+  >
+    <span>No niveisEnsinos found</span>
+  </div>
+
+  <div
+    class="table-responsive"
+    id="entities"
+    *ngIf="niveisEnsinos && niveisEnsinos.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nivelensino</span></th>
+          <th scope="col"><span>Nome</span></th>
+          <th scope="col"><span>Unidaderesponsavel</span></th>
+          <th scope="col"><span>Situacao</span></th>
+          <th scope="col"><span>Dtatualizacao</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let niveisEnsino of niveisEnsinos; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a [routerLink]="['/niveis-ensino', niveisEnsino.id, 'view']">{{
+              niveisEnsino.id
+            }}</a>
+          </td>
+          <td>{{ niveisEnsino.nivelensino }}</td>
+          <td>{{ niveisEnsino.nome }}</td>
+          <td>{{ niveisEnsino.unidaderesponsavel }}</td>
+          <td>{{ niveisEnsino.situacao }}</td>
+          <td>{{ niveisEnsino.dtatualizacao | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/niveis-ensino', niveisEnsino.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/niveis-ensino', niveisEnsino.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(niveisEnsino)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

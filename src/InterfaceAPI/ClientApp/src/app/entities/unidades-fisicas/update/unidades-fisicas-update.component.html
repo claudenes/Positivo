@@ -1,0 +1,164 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form
+      name="editForm"
+      role="form"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="editForm"
+    >
+      <h2
+        id="jhi-unidades-fisicas-heading"
+        data-cy="UnidadesFisicasCreateUpdateHeading"
+      >
+        Create or edit a Unidades Fisicas
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_unidadefisica"
+            >Unidadefisica</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="unidadefisica"
+            id="field_unidadefisica"
+            data-cy="unidadefisica"
+            formControlName="unidadefisica"
+          />
+          <div
+            *ngIf="
+              editForm.get('unidadefisica')!.invalid &&
+              (editForm.get('unidadefisica')!.dirty ||
+                editForm.get('unidadefisica')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('unidadefisica')?.errors?.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_unidadefisicafolha"
+            >Unidadefisicafolha</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="unidadefisicafolha"
+            id="field_unidadefisicafolha"
+            data-cy="unidadefisicafolha"
+            formControlName="unidadefisicafolha"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nome"
+            id="field_nome"
+            data-cy="nome"
+            formControlName="nome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_cnpj">Cnpj</label>
+          <input
+            type="text"
+            class="form-control"
+            name="cnpj"
+            id="field_cnpj"
+            data-cy="cnpj"
+            formControlName="cnpj"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_situacao"
+            >Situacao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="situacao"
+            id="field_situacao"
+            data-cy="situacao"
+            formControlName="situacao"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dtatualizacao"
+            >Dtatualizacao</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dtatualizacao"
+              data-cy="dtatualizacao"
+              type="text"
+              class="form-control"
+              name="dtatualizacao"
+              ngbDatepicker
+              #dtatualizacaoDp="ngbDatepicker"
+              formControlName="dtatualizacao"
+            />
+            <span class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="dtatualizacaoDp.toggle()"
+              >
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

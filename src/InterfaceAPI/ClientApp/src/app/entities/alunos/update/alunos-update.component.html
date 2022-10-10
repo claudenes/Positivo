@@ -1,0 +1,294 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form
+      name="editForm"
+      role="form"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="editForm"
+    >
+      <h2 id="jhi-alunos-heading" data-cy="AlunosCreateUpdateHeading">
+        Create or edit a Alunos
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_aluno">Aluno</label>
+          <input
+            type="text"
+            class="form-control"
+            name="aluno"
+            id="field_aluno"
+            data-cy="aluno"
+            formControlName="aluno"
+          />
+          <div
+            *ngIf="
+              editForm.get('aluno')!.invalid &&
+              (editForm.get('aluno')!.dirty || editForm.get('aluno')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('aluno')?.errors?.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_pessoa">Pessoa</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pessoa"
+            id="field_pessoa"
+            data-cy="pessoa"
+            formControlName="pessoa"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nome"
+            id="field_nome"
+            data-cy="nome"
+            formControlName="nome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sobrenome"
+            >Sobrenome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="sobrenome"
+            id="field_sobrenome"
+            data-cy="sobrenome"
+            formControlName="sobrenome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_primeironome"
+            >Primeironome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primeironome"
+            id="field_primeironome"
+            data-cy="primeironome"
+            formControlName="primeironome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_situacao"
+            >Situacao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="situacao"
+            id="field_situacao"
+            data-cy="situacao"
+            formControlName="situacao"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_turno">Turno</label>
+          <input
+            type="text"
+            class="form-control"
+            name="turno"
+            id="field_turno"
+            data-cy="turno"
+            formControlName="turno"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_curriculo"
+            >Curriculo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="curriculo"
+            id="field_curriculo"
+            data-cy="curriculo"
+            formControlName="curriculo"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_serie">Serie</label>
+          <input
+            type="number"
+            class="form-control"
+            name="serie"
+            id="field_serie"
+            data-cy="serie"
+            formControlName="serie"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_anoingresso"
+            >Anoingresso</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="anoingresso"
+            id="field_anoingresso"
+            data-cy="anoingresso"
+            formControlName="anoingresso"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_senha">Senha</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senha"
+            id="field_senha"
+            data-cy="senha"
+            formControlName="senha"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dtatualizacao"
+            >Dtatualizacao</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dtatualizacao"
+              data-cy="dtatualizacao"
+              type="text"
+              class="form-control"
+              name="dtatualizacao"
+              ngbDatepicker
+              #dtatualizacaoDp="ngbDatepicker"
+              formControlName="dtatualizacao"
+            />
+            <span class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="dtatualizacaoDp.toggle()"
+              >
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_niveisEnsino"
+            >Niveis Ensino</label
+          >
+          <select
+            class="form-control"
+            id="field_niveisEnsino"
+            data-cy="niveisEnsino"
+            name="niveisEnsino"
+            formControlName="niveisEnsino"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                niveisEnsinoOption.id ===
+                editForm.get('niveisEnsino')!.value?.id
+                  ? editForm.get('niveisEnsino')!.value
+                  : niveisEnsinoOption
+              "
+              *ngFor="
+                let niveisEnsinoOption of niveisEnsinosSharedCollection;
+                trackBy: trackNiveisEnsinoById
+              "
+            >
+              {{ niveisEnsinoOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_unidadesFisicas"
+            >Unidades Fisicas</label
+          >
+          <select
+            class="form-control"
+            id="field_unidadesFisicas"
+            data-cy="unidadesFisicas"
+            name="unidadesFisicas"
+            formControlName="unidadesFisicas"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                unidadesFisicasOption.id ===
+                editForm.get('unidadesFisicas')!.value?.id
+                  ? editForm.get('unidadesFisicas')!.value
+                  : unidadesFisicasOption
+              "
+              *ngFor="
+                let unidadesFisicasOption of unidadesFisicasSharedCollection;
+                trackBy: trackUnidadesFisicasById
+              "
+            >
+              {{ unidadesFisicasOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

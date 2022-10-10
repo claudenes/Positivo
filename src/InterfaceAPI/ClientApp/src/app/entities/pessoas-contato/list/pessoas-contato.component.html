@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="PessoasContatoHeading">
+    <span>Pessoas Contatoes</span>
+
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-info mr-2"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pessoas-contato"
+        [routerLink]="['/pessoas-contato/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Pessoas Contato </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div
+    class="alert alert-warning"
+    id="no-result"
+    *ngIf="pessoasContatoes?.length === 0"
+  >
+    <span>No pessoasContatoes found</span>
+  </div>
+
+  <div
+    class="table-responsive"
+    id="entities"
+    *ngIf="pessoasContatoes && pessoasContatoes.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Pessoa</span></th>
+          <th scope="col"><span>Email</span></th>
+          <th scope="col"><span>Emailgoogle</span></th>
+          <th scope="col"><span>Endereco</span></th>
+          <th scope="col"><span>Endnum</span></th>
+          <th scope="col"><span>Endcompl</span></th>
+          <th scope="col"><span>Bairro</span></th>
+          <th scope="col"><span>Municipio</span></th>
+          <th scope="col"><span>Uf</span></th>
+          <th scope="col"><span>Cep</span></th>
+          <th scope="col"><span>Dddfone</span></th>
+          <th scope="col"><span>Fone</span></th>
+          <th scope="col"><span>Dddcelular</span></th>
+          <th scope="col"><span>Celular</span></th>
+          <th scope="col"><span>Dddcomercial</span></th>
+          <th scope="col"><span>Comercial</span></th>
+          <th scope="col"><span>Dtatualizacao</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let pessoasContato of pessoasContatoes; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a [routerLink]="['/pessoas-contato', pessoasContato.id, 'view']">{{
+              pessoasContato.id
+            }}</a>
+          </td>
+          <td>{{ pessoasContato.pessoa }}</td>
+          <td>{{ pessoasContato.email }}</td>
+          <td>{{ pessoasContato.emailgoogle }}</td>
+          <td>{{ pessoasContato.endereco }}</td>
+          <td>{{ pessoasContato.endnum }}</td>
+          <td>{{ pessoasContato.endcompl }}</td>
+          <td>{{ pessoasContato.bairro }}</td>
+          <td>{{ pessoasContato.municipio }}</td>
+          <td>{{ pessoasContato.uf }}</td>
+          <td>{{ pessoasContato.cep }}</td>
+          <td>{{ pessoasContato.dddfone }}</td>
+          <td>{{ pessoasContato.fone }}</td>
+          <td>{{ pessoasContato.dddcelular }}</td>
+          <td>{{ pessoasContato.celular }}</td>
+          <td>{{ pessoasContato.dddcomercial }}</td>
+          <td>{{ pessoasContato.comercial }}</td>
+          <td>{{ pessoasContato.dtatualizacao | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/pessoas-contato', pessoasContato.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/pessoas-contato', pessoasContato.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(pessoasContato)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

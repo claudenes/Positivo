@@ -1,0 +1,111 @@
+<div>
+  <h2 id="page-heading" data-cy="UnidadesFisicasHeading">
+    <span>Unidades Fisicas</span>
+
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-info mr-2"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-unidades-fisicas"
+        [routerLink]="['/unidades-fisicas/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Unidades Fisicas </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div
+    class="alert alert-warning"
+    id="no-result"
+    *ngIf="unidadesFisicas?.length === 0"
+  >
+    <span>No unidadesFisicas found</span>
+  </div>
+
+  <div
+    class="table-responsive"
+    id="entities"
+    *ngIf="unidadesFisicas && unidadesFisicas.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Unidadefisica</span></th>
+          <th scope="col"><span>Unidadefisicafolha</span></th>
+          <th scope="col"><span>Nome</span></th>
+          <th scope="col"><span>Cnpj</span></th>
+          <th scope="col"><span>Situacao</span></th>
+          <th scope="col"><span>Dtatualizacao</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let unidadesFisicas of unidadesFisicas; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a
+              [routerLink]="['/unidades-fisicas', unidadesFisicas.id, 'view']"
+              >{{ unidadesFisicas.id }}</a
+            >
+          </td>
+          <td>{{ unidadesFisicas.unidadefisica }}</td>
+          <td>{{ unidadesFisicas.unidadefisicafolha }}</td>
+          <td>{{ unidadesFisicas.nome }}</td>
+          <td>{{ unidadesFisicas.cnpj }}</td>
+          <td>{{ unidadesFisicas.situacao }}</td>
+          <td>{{ unidadesFisicas.dtatualizacao | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/unidades-fisicas', unidadesFisicas.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/unidades-fisicas', unidadesFisicas.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(unidadesFisicas)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

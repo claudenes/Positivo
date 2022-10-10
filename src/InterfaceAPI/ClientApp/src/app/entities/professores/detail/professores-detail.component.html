@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="professores">
+      <h2 data-cy="professoresDetailsHeading"><span>Professores</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ professores.id }}</span>
+        </dd>
+        <dt><span>Professor</span></dt>
+        <dd>
+          <span>{{ professores.professor }}</span>
+        </dd>
+        <dt><span>Pessoa</span></dt>
+        <dd>
+          <span>{{ professores.pessoa }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ professores.nome }}</span>
+        </dd>
+        <dt><span>Primeironome</span></dt>
+        <dd>
+          <span>{{ professores.primeironome }}</span>
+        </dd>
+        <dt><span>Sobrenome</span></dt>
+        <dd>
+          <span>{{ professores.sobrenome }}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+          <span>{{ professores.situacao }}</span>
+        </dd>
+        <dt><span>Senha</span></dt>
+        <dd>
+          <span>{{ professores.senha }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ professores.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/professores', professores.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

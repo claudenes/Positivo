@@ -1,0 +1,107 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="alunos">
+      <h2 data-cy="alunosDetailsHeading"><span>Alunos</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ alunos.id }}</span>
+        </dd>
+        <dt><span>Aluno</span></dt>
+        <dd>
+          <span>{{ alunos.aluno }}</span>
+        </dd>
+        <dt><span>Pessoa</span></dt>
+        <dd>
+          <span>{{ alunos.pessoa }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ alunos.nome }}</span>
+        </dd>
+        <dt><span>Sobrenome</span></dt>
+        <dd>
+          <span>{{ alunos.sobrenome }}</span>
+        </dd>
+        <dt><span>Primeironome</span></dt>
+        <dd>
+          <span>{{ alunos.primeironome }}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+          <span>{{ alunos.situacao }}</span>
+        </dd>
+        <dt><span>Turno</span></dt>
+        <dd>
+          <span>{{ alunos.turno }}</span>
+        </dd>
+        <dt><span>Curriculo</span></dt>
+        <dd>
+          <span>{{ alunos.curriculo }}</span>
+        </dd>
+        <dt><span>Serie</span></dt>
+        <dd>
+          <span>{{ alunos.serie }}</span>
+        </dd>
+        <dt><span>Anoingresso</span></dt>
+        <dd>
+          <span>{{ alunos.anoingresso }}</span>
+        </dd>
+        <dt><span>Senha</span></dt>
+        <dd>
+          <span>{{ alunos.senha }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ alunos.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Niveis Ensino</span></dt>
+        <dd>
+          <div *ngIf="alunos.niveisEnsino">
+            <a
+              [routerLink]="['/niveis-ensino', alunos.niveisEnsino?.id, 'view']"
+              >{{ alunos.niveisEnsino?.id }}</a
+            >
+          </div>
+        </dd>
+        <dt><span>Unidades Fisicas</span></dt>
+        <dd>
+          <div *ngIf="alunos.unidadesFisicas">
+            <a
+              [routerLink]="[
+                '/unidades-fisicas',
+                alunos.unidadesFisicas?.id,
+                'view'
+              ]"
+              >{{ alunos.unidadesFisicas?.id }}</a
+            >
+          </div>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/alunos', alunos.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

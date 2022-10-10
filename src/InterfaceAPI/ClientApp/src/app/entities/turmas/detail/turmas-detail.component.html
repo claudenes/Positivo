@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="turmas">
+      <h2 data-cy="turmasDetailsHeading"><span>Turmas</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ turmas.id }}</span>
+        </dd>
+        <dt><span>Turma</span></dt>
+        <dd>
+          <span>{{ turmas.turma }}</span>
+        </dd>
+        <dt><span>Turno</span></dt>
+        <dd>
+          <span>{{ turmas.turno }}</span>
+        </dd>
+        <dt><span>Curriculo</span></dt>
+        <dd>
+          <span>{{ turmas.curriculo }}</span>
+        </dd>
+        <dt><span>Serie</span></dt>
+        <dd>
+          <span>{{ turmas.serie }}</span>
+        </dd>
+        <dt><span>Ano</span></dt>
+        <dd>
+          <span>{{ turmas.ano }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ turmas.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Niveis Ensino</span></dt>
+        <dd>
+          <div *ngIf="turmas.niveisEnsino">
+            <a
+              [routerLink]="['/niveis-ensino', turmas.niveisEnsino?.id, 'view']"
+              >{{ turmas.niveisEnsino?.id }}</a
+            >
+          </div>
+        </dd>
+        <dt><span>Unidades Fisicas</span></dt>
+        <dd>
+          <div *ngIf="turmas.unidadesFisicas">
+            <a
+              [routerLink]="[
+                '/unidades-fisicas',
+                turmas.unidadesFisicas?.id,
+                'view'
+              ]"
+              >{{ turmas.unidadesFisicas?.id }}</a
+            >
+          </div>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/turmas', turmas.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

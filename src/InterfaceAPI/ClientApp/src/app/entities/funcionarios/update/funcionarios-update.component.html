@@ -1,0 +1,237 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form
+      name="editForm"
+      role="form"
+      novalidate
+      (ngSubmit)="save()"
+      [formGroup]="editForm"
+    >
+      <h2
+        id="jhi-funcionarios-heading"
+        data-cy="FuncionariosCreateUpdateHeading"
+      >
+        Create or edit a Funcionarios
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input
+            type="number"
+            class="form-control"
+            name="id"
+            id="field_id"
+            data-cy="id"
+            formControlName="id"
+            [readonly]="true"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_funcionario"
+            >Funcionario</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="funcionario"
+            id="field_funcionario"
+            data-cy="funcionario"
+            formControlName="funcionario"
+          />
+          <div
+            *ngIf="
+              editForm.get('funcionario')!.invalid &&
+              (editForm.get('funcionario')!.dirty ||
+                editForm.get('funcionario')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('funcionario')?.errors?.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('funcionario')?.errors?.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            name="nome"
+            id="field_nome"
+            data-cy="nome"
+            formControlName="nome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_primeironome"
+            >Primeironome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="primeironome"
+            id="field_primeironome"
+            data-cy="primeironome"
+            formControlName="primeironome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sobrenome"
+            >Sobrenome</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="sobrenome"
+            id="field_sobrenome"
+            data-cy="sobrenome"
+            formControlName="sobrenome"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_datanascimento"
+            >Datanascimento</label
+          >
+          <div class="input-group">
+            <input
+              id="field_datanascimento"
+              data-cy="datanascimento"
+              type="text"
+              class="form-control"
+              name="datanascimento"
+              ngbDatepicker
+              #datanascimentoDp="ngbDatepicker"
+              formControlName="datanascimento"
+            />
+            <span class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="datanascimentoDp.toggle()"
+              >
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_cpf">Cpf</label>
+          <input
+            type="number"
+            class="form-control"
+            name="cpf"
+            id="field_cpf"
+            data-cy="cpf"
+            formControlName="cpf"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_unidadefisicaFolha"
+            >Unidadefisica Folha</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="unidadefisicaFolha"
+            id="field_unidadefisicaFolha"
+            data-cy="unidadefisicaFolha"
+            formControlName="unidadefisicaFolha"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_senha">Senha</label>
+          <input
+            type="text"
+            class="form-control"
+            name="senha"
+            id="field_senha"
+            data-cy="senha"
+            formControlName="senha"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_situacao"
+            >Situacao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="situacao"
+            id="field_situacao"
+            data-cy="situacao"
+            formControlName="situacao"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_dtatualizacao"
+            >Dtatualizacao</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dtatualizacao"
+              data-cy="dtatualizacao"
+              type="text"
+              class="form-control"
+              name="dtatualizacao"
+              ngbDatepicker
+              #dtatualizacaoDp="ngbDatepicker"
+              formControlName="dtatualizacao"
+            />
+            <span class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="dtatualizacaoDp.toggle()"
+              >
+                <fa-icon icon="calendar-alt"></fa-icon>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="cancel-save"
+          data-cy="entityCreateCancelButton"
+          class="btn btn-secondary"
+          (click)="previousState()"
+        >
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

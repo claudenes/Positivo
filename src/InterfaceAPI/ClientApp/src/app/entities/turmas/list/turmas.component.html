@@ -1,0 +1,130 @@
+<div>
+  <h2 id="page-heading" data-cy="TurmasHeading">
+    <span>Turmas</span>
+
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-info mr-2"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-turmas"
+        [routerLink]="['/turmas/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Turmas </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="turmas?.length === 0">
+    <span>No turmas found</span>
+  </div>
+
+  <div
+    class="table-responsive"
+    id="entities"
+    *ngIf="turmas && turmas.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Turma</span></th>
+          <th scope="col"><span>Turno</span></th>
+          <th scope="col"><span>Curriculo</span></th>
+          <th scope="col"><span>Serie</span></th>
+          <th scope="col"><span>Ano</span></th>
+          <th scope="col"><span>Dtatualizacao</span></th>
+          <th scope="col"><span>Niveis Ensino</span></th>
+          <th scope="col"><span>Unidades Fisicas</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let turmas of turmas; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a [routerLink]="['/turmas', turmas.id, 'view']">{{ turmas.id }}</a>
+          </td>
+          <td>{{ turmas.turma }}</td>
+          <td>{{ turmas.turno }}</td>
+          <td>{{ turmas.curriculo }}</td>
+          <td>{{ turmas.serie }}</td>
+          <td>{{ turmas.ano }}</td>
+          <td>{{ turmas.dtatualizacao | formatMediumDate }}</td>
+          <td>
+            <div *ngIf="turmas.niveisEnsino">
+              <a
+                [routerLink]="[
+                  '/niveis-ensino',
+                  turmas.niveisEnsino?.id,
+                  'view'
+                ]"
+                >{{ turmas.niveisEnsino?.id }}</a
+              >
+            </div>
+          </td>
+          <td>
+            <div *ngIf="turmas.unidadesFisicas">
+              <a
+                [routerLink]="[
+                  '/unidades-fisicas',
+                  turmas.unidadesFisicas?.id,
+                  'view'
+                ]"
+                >{{ turmas.unidadesFisicas?.id }}</a
+              >
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/turmas', turmas.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/turmas', turmas.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(turmas)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

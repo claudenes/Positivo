@@ -1,0 +1,114 @@
+<div>
+  <h2 id="page-heading" data-cy="ProfessoresHeading">
+    <span>Professores</span>
+
+    <div class="d-flex justify-content-end">
+      <button
+        class="btn btn-info mr-2"
+        (click)="loadAll()"
+        [disabled]="isLoading"
+      >
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-professores"
+        [routerLink]="['/professores/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Professores </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div
+    class="alert alert-warning"
+    id="no-result"
+    *ngIf="professores?.length === 0"
+  >
+    <span>No professores found</span>
+  </div>
+
+  <div
+    class="table-responsive"
+    id="entities"
+    *ngIf="professores && professores.length > 0"
+  >
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Professor</span></th>
+          <th scope="col"><span>Pessoa</span></th>
+          <th scope="col"><span>Nome</span></th>
+          <th scope="col"><span>Primeironome</span></th>
+          <th scope="col"><span>Sobrenome</span></th>
+          <th scope="col"><span>Situacao</span></th>
+          <th scope="col"><span>Senha</span></th>
+          <th scope="col"><span>Dtatualizacao</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let professores of professores; trackBy: trackId"
+          data-cy="entityTable"
+        >
+          <td>
+            <a [routerLink]="['/professores', professores.id, 'view']">{{
+              professores.id
+            }}</a>
+          </td>
+          <td>{{ professores.professor }}</td>
+          <td>{{ professores.pessoa }}</td>
+          <td>{{ professores.nome }}</td>
+          <td>{{ professores.primeironome }}</td>
+          <td>{{ professores.sobrenome }}</td>
+          <td>{{ professores.situacao }}</td>
+          <td>{{ professores.senha }}</td>
+          <td>{{ professores.dtatualizacao | formatMediumDate }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/professores', professores.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/professores', professores.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button
+                type="submit"
+                (click)="delete(professores)"
+                class="btn btn-danger btn-sm"
+                data-cy="entityDeleteButton"
+              >
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

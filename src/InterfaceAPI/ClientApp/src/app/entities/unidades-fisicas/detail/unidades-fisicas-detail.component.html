@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="unidadesFisicas">
+      <h2 data-cy="unidadesFisicasDetailsHeading">
+        <span>Unidades Fisicas</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.id }}</span>
+        </dd>
+        <dt><span>Unidadefisica</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.unidadefisica }}</span>
+        </dd>
+        <dt><span>Unidadefisicafolha</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.unidadefisicafolha }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.nome }}</span>
+        </dd>
+        <dt><span>Cnpj</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.cnpj }}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.situacao }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ unidadesFisicas.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/unidades-fisicas', unidadesFisicas.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

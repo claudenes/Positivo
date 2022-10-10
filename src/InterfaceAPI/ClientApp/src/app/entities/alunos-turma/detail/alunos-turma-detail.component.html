@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="alunosTurma">
+      <h2 data-cy="alunosTurmaDetailsHeading"><span>Alunos Turma</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ alunosTurma.id }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ alunosTurma.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Alunos</span></dt>
+        <dd>
+          <div *ngIf="alunosTurma.alunos">
+            <a [routerLink]="['/alunos', alunosTurma.alunos?.id, 'view']">{{
+              alunosTurma.alunos?.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span>Turmas</span></dt>
+        <dd>
+          <div *ngIf="alunosTurma.turmas">
+            <a [routerLink]="['/turmas', alunosTurma.turmas?.id, 'view']">{{
+              alunosTurma.turmas?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/alunos-turma', alunosTurma.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

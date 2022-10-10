@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="niveisEnsino">
+      <h2 data-cy="niveisEnsinoDetailsHeading"><span>Niveis Ensino</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.id }}</span>
+        </dd>
+        <dt><span>Nivelensino</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.nivelensino }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.nome }}</span>
+        </dd>
+        <dt><span>Unidaderesponsavel</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.unidaderesponsavel }}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.situacao }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ niveisEnsino.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/niveis-ensino', niveisEnsino.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

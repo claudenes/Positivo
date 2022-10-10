@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="funcionarios">
+      <h2 data-cy="funcionariosDetailsHeading"><span>Funcionarios</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ funcionarios.id }}</span>
+        </dd>
+        <dt><span>Funcionario</span></dt>
+        <dd>
+          <span>{{ funcionarios.funcionario }}</span>
+        </dd>
+        <dt><span>Nome</span></dt>
+        <dd>
+          <span>{{ funcionarios.nome }}</span>
+        </dd>
+        <dt><span>Primeironome</span></dt>
+        <dd>
+          <span>{{ funcionarios.primeironome }}</span>
+        </dd>
+        <dt><span>Sobrenome</span></dt>
+        <dd>
+          <span>{{ funcionarios.sobrenome }}</span>
+        </dd>
+        <dt><span>Datanascimento</span></dt>
+        <dd>
+          <span>{{ funcionarios.datanascimento | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Cpf</span></dt>
+        <dd>
+          <span>{{ funcionarios.cpf }}</span>
+        </dd>
+        <dt><span>Unidadefisica Folha</span></dt>
+        <dd>
+          <span>{{ funcionarios.unidadefisicaFolha }}</span>
+        </dd>
+        <dt><span>Senha</span></dt>
+        <dd>
+          <span>{{ funcionarios.senha }}</span>
+        </dd>
+        <dt><span>Situacao</span></dt>
+        <dd>
+          <span>{{ funcionarios.situacao }}</span>
+        </dd>
+        <dt><span>Dtatualizacao</span></dt>
+        <dd>
+          <span>{{ funcionarios.dtatualizacao | formatMediumDate }}</span>
+        </dd>
+      </dl>
+
+      <button
+        type="submit"
+        (click)="previousState()"
+        class="btn btn-info"
+        data-cy="entityDetailsBackButton"
+      >
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button
+        type="button"
+        [routerLink]="['/funcionarios', funcionarios.id, 'edit']"
+        class="btn btn-primary"
+      >
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
